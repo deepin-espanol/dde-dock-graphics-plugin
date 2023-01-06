@@ -63,9 +63,9 @@ pkg_check_modules(QGSettings REQUIRED gsettings-qt)
 #add_definitions("${QT_DEFINITIONS} -DQT_PLUGIN")
 
 # 更新 .ts 翻译文件
-execute_process(COMMAND bash ${CMAKE_CURRENT_SOURCE_DIR}/translations/translate_update.sh WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/translations)
+execute_process(COMMAND sh ${CMAKE_CURRENT_SOURCE_DIR}/translations/translate_update.sh WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/translations)
 # 生成 .qm 翻译文件
-execute_process(COMMAND bash ${CMAKE_CURRENT_SOURCE_DIR}/translations/translate_generation.sh WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/translations)
+execute_process(COMMAND sh ${CMAKE_CURRENT_SOURCE_DIR}/translations/translate_generation.sh WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/translations)
 
 # 新增一个编译目标
 # 这里使用命令 add_library 来表示本项目要生成一个库文件目标，
