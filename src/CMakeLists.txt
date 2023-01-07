@@ -123,4 +123,4 @@ install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/info DESTINATION ${CMAKE_INSTALL_PREFI
 install(FILES ${CMAKE_SOURCE_DIR}/oem-menuextensions/prime-run.desktop DESTINATION ${CMAKE_INSTALL_PREFIX}/apps/${PROJECT_NAME}/files/share/oem-menuextensions)
 # 使用 cmake 的 file 命令，递归查找项目目录下所有脚本文件
 file(GLOB SCRIPTS "${CMAKE_SOURCE_DIR}/scripts/*.sh")
-install(FILES ${SCRIPTS} DESTINATION ${CMAKE_INSTALL_PREFIX}/apps/${PROJECT_NAME}/files/bin)
+install(FILES ${SCRIPTS} PERMISSIONS OWNER_EXECUTE OWNER_WRITE OWNER_READ DESTINATION ${CMAKE_INSTALL_PREFIX}/apps/${PROJECT_NAME}/files/bin)
