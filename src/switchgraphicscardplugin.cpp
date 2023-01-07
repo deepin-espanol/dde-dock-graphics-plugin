@@ -224,7 +224,7 @@ void SwitchGraphicsCardPlugin::loadPlugin()
     // 初始化 tipsWidget 信息
     m_tipsWidget->setVisible(false);
     m_tipsWidget->setAccessibleName(pluginDisplayName());
-    m_tipsWidget->setText(QObject::tr("Current: ") + m_appletWidget->getCardName());
+    m_tipsWidget->setText(QObject::tr("Current: %1").arg(m_appletWidget->getCardName()));
 
     m_proxyInter->itemAdded(this, pluginName());
     displayModeChanged(displayMode());
@@ -245,10 +245,8 @@ void SwitchGraphicsCardPlugin::refreshPluginItemsVisible()
 
 void SwitchGraphicsCardPlugin::updateTranslator()
 {
-    if (QLocale::system().name().split("_").at(0) == "zh") {
-        m_translator->load("zh_CN.qm", ":/translations/translations");
-        QCoreApplication::installTranslator(m_translator);
-    }
+    m_translator->load(QLocale(), "", "",  QLatin1String(":/translations/translations"), QLatin1String(".qm"));
+    QCoreApplication::installTranslator(m_translator);
 }
 
 void SwitchGraphicsCardPlugin::slotGSettingsChanged(const QString &key)

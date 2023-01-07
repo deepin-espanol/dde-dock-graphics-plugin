@@ -19,7 +19,7 @@ esac
 lshw -c video 2>/dev/null | grep "driver=nvidia" >/dev/null
 if [ $? -ne 0 ]; then
 	# zenity --warning --width=500 --title="$TITLE" --text="$TEXT"
-	notify-send -t 5000 -a dde-dock-graphics-plugin -i dialog-warning "$TEXT"
+	notify-send "$TITLE" -t 5000 -a dde-dock-graphics-plugin -i dialog-warning "$TEXT"
 	echo "Intel"
 	exit
 fi
