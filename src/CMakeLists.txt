@@ -115,6 +115,7 @@ set(CMAKE_INSTALL_PREFIX "/opt")
 # 设置执行 make install 时哪个目标应该被 install 到哪个位置
 install(TARGETS ${PLUGIN_NAME} LIBRARY DESTINATION ${CMAKE_INSTALL_PREFIX}/apps/${PROJECT_NAME}/files/plugins)
 
+install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/switch-graphics-card.svg DESTINATION /usr/share/icons/hicolor/symbolic/apps)
 install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/dde-dock-graphics-plugin.desktop DESTINATION ${CMAKE_INSTALL_PREFIX}/apps/${PROJECT_NAME}/entries/applications)
 install(FILES ${CMAKE_SOURCE_DIR}/gschema/com.deepin.dde.dock.module.switch-graphics-card.gschema.xml DESTINATION ${CMAKE_INSTALL_PREFIX}/apps/${PROJECT_NAME}/entries/glib-2.0/schemas)
 install(FILES ${CMAKE_SOURCE_DIR}/pkexec/com.deepin.pkexec.dde-dock-graphics-plugin.policy DESTINATION ${CMAKE_INSTALL_PREFIX}/apps/${PROJECT_NAME}/entries/polkit/actions)
@@ -125,10 +126,9 @@ install(FILES ${CMAKE_SOURCE_DIR}/oem-menuextensions/prime-run.desktop DESTINATI
 file(GLOB SCRIPTS "${CMAKE_SOURCE_DIR}/scripts/*.sh")
 install(FILES ${SCRIPTS} PERMISSIONS OWNER_EXECUTE OWNER_WRITE OWNER_READ DESTINATION ${CMAKE_INSTALL_PREFIX}/apps/${PROJECT_NAME}/files/bin)
 
-install(CODE "execute_process(COMMAND ln -sf ${CMAKE_INSTALL_PREFIX}/apps/${PROJECT_NAME}/files/plugins/libswitch-graphics-card.so /usr/lib/dde-dock/plugins/libswitch-graphics-card.so)")
-install(CODE "execute_process(COMMAND ln -sf ${CMAKE_INSTALL_PREFIX}/apps/${PROJECT_NAME}/files/bin/prime-run.sh /usr/bin/prime-run)")
-install(CODE "execute_process(COMMAND ln -sf ${CMAKE_INSTALL_PREFIX}/apps/${PROJECT_NAME}/files/share/oem-menuextensions/prime-run.desktop /usr/share/deepin/dde-file-manager/oem-menuextensions/prime-run.desktop)")
-# FIXME
-install(FILES /usr/lib/dde-dock/plugins/libswitch-graphics-card.so DESTINATION /usr/lib/dde-dock/plugins)
-install(FILES /usr/bin/prime-run DESTINATION /usr/bin)
-install(FILES /usr/share/deepin/dde-file-manager/oem-menuextensions/prime-run.desktop DESTINATION /usr/share/deepin/dde-file-manager/oem-menuextensions)
+file(CREATE_LINK ${CMAKE_INSTALL_PREFIX}/apps/${PROJECT_NAME}/files/plugins/libswitch-graphics-card.so ${CMAKE_CURRENT_BINARY_DIR}/libswitch-graphics-card.link SYMBOLIC)
+file(CREATE_LINK ${CMAKE_INSTALL_PREFIX}/apps/${PROJECT_NAME}/files/bin/prime-run.sh ${CMAKE_CURRENT_BINARY_DIR}/prime-run.link SYMBOLIC)
+file(CREATE_LINK ${CMAKE_INSTALL_PREFIX}/apps/${PROJECT_NAME}/files/share/oem-menuextensions/prime-run.desktop ${CMAKE_CURRENT_BINARY_DIR}/prime-run-dt.link SYMBOLIC)
+install(FILES ${CMAKE_CURRENT_BINARY_DIR}/libswitch-graphics-card.link DESTINATION /usr/lib/dde-dock/plugins RENAME libswitch-graphics-card.so)
+install(FILES ${CMAKE_CURRENT_BINARY_DIR}/prime-run.link DESTINATION /usr/bin RENAME prime-run)
+install(FILES ${CMAKE_CURRENT_BINARY_DIR}/prime-run-dt.link DESTINATION /usr/share/deepin/dde-file-manager/oem-menuextensions RENAME prime-run.desktop)
