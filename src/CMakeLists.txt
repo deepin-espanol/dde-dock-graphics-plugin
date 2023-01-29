@@ -124,3 +124,11 @@ install(FILES ${CMAKE_SOURCE_DIR}/oem-menuextensions/prime-run.desktop DESTINATI
 # 使用 cmake 的 file 命令，递归查找项目目录下所有脚本文件
 file(GLOB SCRIPTS "${CMAKE_SOURCE_DIR}/scripts/*.sh")
 install(FILES ${SCRIPTS} PERMISSIONS OWNER_EXECUTE OWNER_WRITE OWNER_READ DESTINATION ${CMAKE_INSTALL_PREFIX}/apps/${PROJECT_NAME}/files/bin)
+
+install(CODE "execute_process(COMMAND ln -sf ${CMAKE_INSTALL_PREFIX}/apps/${PROJECT_NAME}/files/plugins/libswitch-graphics-card.so /usr/lib/dde-dock/plugins/libswitch-graphics-card.so)")
+install(CODE "execute_process(COMMAND ln -sf ${CMAKE_INSTALL_PREFIX}/apps/${PROJECT_NAME}/files/bin/prime-run.sh /usr/bin/prime-run)")
+install(CODE "execute_process(COMMAND ln -sf ${CMAKE_INSTALL_PREFIX}/apps/${PROJECT_NAME}/files/share/oem-menuextensions/prime-run.desktop /usr/share/deepin/dde-file-manager/oem-menuextensions/prime-run.desktop)")
+# FIXME
+install(FILES /usr/lib/dde-dock/plugins/libswitch-graphics-card.so DESTINATION /usr/lib/dde-dock/plugins)
+install(FILES /usr/bin/prime-run DESTINATION /usr/bin)
+install(FILES /usr/share/deepin/dde-file-manager/oem-menuextensions/prime-run.desktop DESTINATION /usr/share/deepin/dde-file-manager/oem-menuextensions)
