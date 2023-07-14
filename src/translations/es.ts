@@ -1,58 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!DOCTYPE TS>
-<TS version="2.1" language="zh_CN" sourcelanguage="en_US">
+<TS version="2.1" language="es" sourcelanguage="en_US">
 <context>
     <name>QObject</name>
     <message>
         <location filename="../switchgraphicscardplugin.cpp" line="51"/>
         <source>Switch Graphics Card</source>
-        <translation>显卡切换</translation>
+        <translation>Cambiar de tarjeta gráfica</translation>
     </message>
     <message>
         <location filename="../switchgraphicscardplugin.cpp" line="127"/>
         <source>Refresh</source>
-        <translation>刷新</translation>
+        <translation>Actualizar</translation>
     </message>
     <message>
         <location filename="../switchgraphicscardplugin.cpp" line="133"/>
         <source>Display Settings</source>
-        <translation>显示器设置</translation>
+        <translation>Configuración de la pantalla</translation>
     </message>
     <message>
         <location filename="../switchgraphicscardplugin.cpp" line="139"/>
         <source>Run nvidia-settings</source>
-        <translation>NVIDIA 显卡设置</translation>
+        <translation>Configuración de gráficos NVIDIA</translation>
     </message>
     <message>
         <location filename="../switchgraphicscardplugin.cpp" line="227"/>
         <source>Current: %1</source>
-        <translation>当前显卡： %1</translation>
+        <translation>Actual: %1</translation>
     </message>
     <message>
         <location filename="../switchgraphicscardappletwidget.cpp" line="39"/>
         <source>Intel Graphics</source>
-        <translation>切换 Intel 显卡</translation>
+        <translation>Gráficos Intel</translation>
     </message>
     <message>
         <location filename="../switchgraphicscardappletwidget.cpp" line="40"/>
         <source>NVIDIA Graphics</source>
-        <translation>切换 NVIDIA 显卡</translation>
+        <translation>Gráficos NVIDIA</translation>
     </message>
     <message>
         <location filename="../switchgraphicscardappletwidget.cpp" line="67"/>
         <source>Intel graphics is already in use</source>
-        <translation>已经是 Intel 显卡</translation>
+        <translation>Ya se utilizan gráficos Intel</translation>
     </message>
     <message>
         <location filename="../switchgraphicscardappletwidget.cpp" line="71"/>
         <location filename="../switchgraphicscardappletwidget.cpp" line="88"/>
         <source>Preparing to switch graphics card and logout, please save your work in progress in time</source>
-        <translation>即将切换显卡并注销登录，请及时保存您的工作进度</translation>
+        <translation>Preparándose para cambiar la tarjeta gráfica y cerrar la sesión, guarde el progreso de su trabajo a tiempo</translation>
     </message>
     <message>
         <location filename="../switchgraphicscardappletwidget.cpp" line="84"/>
         <source>NVIDIA graphics is already in use</source>
-        <translation>已经是 NVIDIA 显卡</translation>
+        <translation>Ya se utilizan gráficos NVIDIA</translation>
     </message>
 </context>
 </TS>

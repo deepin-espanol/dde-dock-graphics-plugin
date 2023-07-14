@@ -1,5 +1,5 @@
 Source: dde-dock-graphics-plugin
-Maintainer: zty199 <zty2864@gmail.com>
+Maintainer: Deepin en Español <soporte@deepines.com>
 Section: utils
 Priority: optional
 Build-Depends:
@@ -19,7 +19,7 @@ Build-Depends:
  qttools5-private-dev,
  dde-dock-dev
 Standards-Version: 1.6.0
-Homepage: https://github.com/zty199/dde-dock-switch_graphics_card
+Homepage: https://github.com/deepin-espanol/dde-dock-graphics-plugin
 
 
 Package: dde-dock-graphics-plugin

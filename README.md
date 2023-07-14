@@ -1,6 +1,6 @@
-# dde-dock-graphics-plugin (forked from mywhat/DDESwitchCard)
+# dde-dock-graphics-plugin
 
-原贴地址：[切换显卡插件](https://bbs.deepin.org/zh/post/197280)
+Original BBS Post：[切换显卡插件](https://bbs.deepin.org/zh/post/197280)
 
 GitHub 原项目地址：[mywhat/DDESwitchCard](https://github.com/mywhat/DDESwitchCard/)
 
@@ -58,7 +58,7 @@ qtcreator（推荐使用 Qt Creator 直接打开 CMakeLists.txt 编译运行）
 sudo apt install cmake qt5-default qttools5-dev libgsettings-qt-dev libdtkcore-dev libdtkgui-dev libdtkwidget-dev libdframeworkdbus-dev dde-dock-dev qtcreator
 ```
 
-### 运行依赖
+### Dependencies
 
 mesa-utils
 
@@ -70,9 +70,9 @@ libnotify4
 sudo apt install mesa-utils zenity libnotify4
 ```
 
-## 源码编译
+## How to compile
 
-安装编译所需依赖后，进入项目目录，在终端中打开，执行 `fakeroot dpkg-buildpackage -b`
+安装编译所需依赖后，进入项目目录，在终端中打开，执行 `dpkg-buildpackage -Zxz -rfakeroot -b -uc -us`
 
 项目目录上层文件夹中将生成 `dde-dock-graphics-plugin_${version}_amd64.deb`，双击安装即可。
 

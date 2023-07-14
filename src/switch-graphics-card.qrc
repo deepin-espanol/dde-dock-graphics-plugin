@@ -6,6 +6,7 @@
         <file>icons/nvidia.svg</file>
     </qresource>
     <qresource prefix="/translations">
+        <file>translations/es.qm</file>
         <file>translations/zh_CN.qm</file>
     </qresource>
 </RCC>

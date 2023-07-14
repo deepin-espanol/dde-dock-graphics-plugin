@@ -1,12 +1,9 @@
-#!/bin/bash
+#!/bin/sh
 # this file is used to auto-generate .qm file from .ts file.
 
-cd $(dirname $0)
+cd "$(dirname "$0")" || exit
 
-ts_list=$(ls ./*.ts)
-
-for ts in "${ts_list[@]}"
-do
+for ts in ./*.ts; do
 #    printf "\nprocess ${ts}\n"
     lrelease "${ts}"
 done

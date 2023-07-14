@@ -63,9 +63,9 @@ pkg_check_modules(QGSettings REQUIRED gsettings-qt)
 #add_definitions("${QT_DEFINITIONS} -DQT_PLUGIN")
 
 # 更新 .ts 翻译文件
-execute_process(COMMAND bash ${CMAKE_CURRENT_SOURCE_DIR}/translations/translate_update.sh WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/translations)
+execute_process(COMMAND sh ${CMAKE_CURRENT_SOURCE_DIR}/translations/translate_update.sh WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/translations)
 # 生成 .qm 翻译文件
-execute_process(COMMAND bash ${CMAKE_CURRENT_SOURCE_DIR}/translations/translate_generation.sh WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/translations)
+execute_process(COMMAND sh ${CMAKE_CURRENT_SOURCE_DIR}/translations/translate_generation.sh WORKING_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/translations)
 
 # 新增一个编译目标
 # 这里使用命令 add_library 来表示本项目要生成一个库文件目标，
@@ -115,6 +115,7 @@ set(CMAKE_INSTALL_PREFIX "/opt")
 # 设置执行 make install 时哪个目标应该被 install 到哪个位置
 install(TARGETS ${PLUGIN_NAME} LIBRARY DESTINATION ${CMAKE_INSTALL_PREFIX}/apps/${PROJECT_NAME}/files/plugins)
 
+install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/switch-graphics-card.svg DESTINATION /usr/share/icons/hicolor/symbolic/apps)
 install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/dde-dock-graphics-plugin.desktop DESTINATION ${CMAKE_INSTALL_PREFIX}/apps/${PROJECT_NAME}/entries/applications)
 install(FILES ${CMAKE_SOURCE_DIR}/gschema/com.deepin.dde.dock.module.switch-graphics-card.gschema.xml DESTINATION ${CMAKE_INSTALL_PREFIX}/apps/${PROJECT_NAME}/entries/glib-2.0/schemas)
 install(FILES ${CMAKE_SOURCE_DIR}/pkexec/com.deepin.pkexec.dde-dock-graphics-plugin.policy DESTINATION ${CMAKE_INSTALL_PREFIX}/apps/${PROJECT_NAME}/entries/polkit/actions)
@@ -123,4 +124,11 @@ install(FILES ${CMAKE_CURRENT_SOURCE_DIR}/info DESTINATION ${CMAKE_INSTALL_PREFI
 install(FILES ${CMAKE_SOURCE_DIR}/oem-menuextensions/prime-run.desktop DESTINATION ${CMAKE_INSTALL_PREFIX}/apps/${PROJECT_NAME}/files/share/oem-menuextensions)
 # 使用 cmake 的 file 命令，递归查找项目目录下所有脚本文件
 file(GLOB SCRIPTS "${CMAKE_SOURCE_DIR}/scripts/*.sh")
-install(FILES ${SCRIPTS} DESTINATION ${CMAKE_INSTALL_PREFIX}/apps/${PROJECT_NAME}/files/bin)
+install(FILES ${SCRIPTS} PERMISSIONS OWNER_EXECUTE OWNER_WRITE OWNER_READ DESTINATION ${CMAKE_INSTALL_PREFIX}/apps/${PROJECT_NAME}/files/bin)
+
+file(CREATE_LINK ${CMAKE_INSTALL_PREFIX}/apps/${PROJECT_NAME}/files/plugins/libswitch-graphics-card.so ${CMAKE_CURRENT_BINARY_DIR}/libswitch-graphics-card.link SYMBOLIC)
+file(CREATE_LINK ${CMAKE_INSTALL_PREFIX}/apps/${PROJECT_NAME}/files/bin/prime-run.sh ${CMAKE_CURRENT_BINARY_DIR}/prime-run.link SYMBOLIC)
+file(CREATE_LINK ${CMAKE_INSTALL_PREFIX}/apps/${PROJECT_NAME}/files/share/oem-menuextensions/prime-run.desktop ${CMAKE_CURRENT_BINARY_DIR}/prime-run-dt.link SYMBOLIC)
+install(FILES ${CMAKE_CURRENT_BINARY_DIR}/libswitch-graphics-card.link DESTINATION /usr/lib/dde-dock/plugins RENAME libswitch-graphics-card.so)
+install(FILES ${CMAKE_CURRENT_BINARY_DIR}/prime-run.link DESTINATION /usr/bin RENAME prime-run)
+install(FILES ${CMAKE_CURRENT_BINARY_DIR}/prime-run-dt.link DESTINATION /usr/share/deepin/dde-file-manager/oem-menuextensions RENAME prime-run.desktop)

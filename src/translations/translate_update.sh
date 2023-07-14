@@ -1,12 +1,9 @@
-#!/bin/bash
+#!/bin/sh
 # this file is used to auto-update .ts file.
 
-cd $(dirname $0)
+cd "$(dirname "$0")" || exit
 
-ts_list=$(ls ./*.ts)
-
-for ts in "${ts_list[@]}"
-do
+for ts in ./*.ts; do
 #    printf "\nprocess ${ts}\n"
-    lupdate ./src -recursive -no-obsolete -ts "${ts}"
+    lupdate ../../src -recursive -no-obsolete -ts "${ts}"
 done

@@ -23,7 +23,7 @@ SwitchGraphicsCardAppletWidget::~SwitchGraphicsCardAppletWidget()
 void SwitchGraphicsCardAppletWidget::setCardName()
 {
     // 获取当前显卡信息
-    m_process->start("bash", QStringList() << "/opt/apps/dde-dock-graphics-plugin/files/bin/CheckGraphics.sh");
+    m_process->start("sh", QStringList() << "/opt/apps/dde-dock-graphics-plugin/files/bin/CheckGraphics.sh");
     m_process->waitForFinished(-1);
     m_cardName = m_process->readAllStandardOutput().trimmed();
     m_process->close();
